@@ -1,0 +1,23 @@
+Offer,Before,RmNoise,Lemmitize,Regex
+A,"face updated
+had bypass in 2010. 
+takes following medications:
+1. metoprolol (blood pressure) - diagnosed 2014 - takes 25 mg daily 
+2. levothyroxine (thyroid) - diagnosed 2016 - takes 25 mg daily 
+",face updated had bypass in 2010 takes following medications 1 metoprolol blood pressure diagnosed 2014 takes 25 mg daily 2 levothyroxine thyroid diagnosed 2016 takes 25 mg daily ,"['face', 'update', 'bypass', '2010', 'take', 'follow', 'medication', '1', 'metoprolol', 'blood', 'pressure', 'diagnose', '2014', 'take', '25', 'mg', 'daily', '2', 'levothyroxine', 'thyroid', 'diagnose', '2016', 'take', '25', 'mg', 'daily']","['-1', '-1', '-1', '-1', '-1']"
+B,"face amount: 250,000
+on following medications:
+1. warfarin (blood thinner) - diagnosed 20xx - takes 3.5 to 4mg daily 
+2. atorvastatin (cholesterol) - diagnosed 20xx - takes 80 mg daily 
+3. digoxin (heart) - diagnosed 20xx - takes .125 mg daily",face amount 250 000 on following medications 1 warfarin blood thinner diagnosed 20xx takes 3 5 to 4mg daily 2 atorvastatin cholesterol diagnosed 20xx takes 80 mg daily 3 digoxin heart diagnosed 20xx takes 125 mg daily,"['face', 'amount', '250', '000', 'follow', 'medication', '1', 'warfarin', 'blood', 'thinner', 'diagnose', '20xx', 'take', '3', '5', '4mg', 'daily', '2', 'atorvastatin', 'cholesterol', 'diagnose', '20xx', 'take', '80', 'mg', 'daily', '3', 'digoxin', 'heart', 'diagnose', '20xx', 'take', '125', 'mg', 'daily']","['-1', 'face amount: 250,000', '-1', '-1', '-1']"
+A,"face updated
+had bypass in 2010. 
+takes following medications:
+1. metoprolol (blood pressure) - diagnosed 2014 - takes 25 mg daily 
+2. levothyroxine (thyroid) - diagnosed 2016 - takes 25 mg daily 
+",face updated had bypass in 2010 takes following medications 1 metoprolol blood pressure diagnosed 2014 takes 25 mg daily 2 levothyroxine thyroid diagnosed 2016 takes 25 mg daily ,"['face', 'update', 'bypass', '2010', 'take', 'follow', 'medication', '1', 'metoprolol', 'blood', 'pressure', 'diagnose', '2014', 'take', '25', 'mg', 'daily', '2', 'levothyroxine', 'thyroid', 'diagnose', '2016', 'take', '25', 'mg', 'daily']","['-1', '-1', '-1', '-1', '-1']"
+B,"face amount: 250,000
+on following medications:
+1. warfarin (blood thinner) - diagnosed 20xx - takes 3.5 to 4mg daily 
+2. atorvastatin (cholesterol) - diagnosed 20xx - takes 80 mg daily 
+3. digoxin (heart) - diagnosed 20xx - takes .125 mg daily",face amount 250 000 on following medications 1 warfarin blood thinner diagnosed 20xx takes 3 5 to 4mg daily 2 atorvastatin cholesterol diagnosed 20xx takes 80 mg daily 3 digoxin heart diagnosed 20xx takes 125 mg daily,"['face', 'amount', '250', '000', 'follow', 'medication', '1', 'warfarin', 'blood', 'thinner', 'diagnose', '20xx', 'take', '3', '5', '4mg', 'daily', '2', 'atorvastatin', 'cholesterol', 'diagnose', '20xx', 'take', '80', 'mg', 'daily', '3', 'digoxin', 'heart', 'diagnose', '20xx', 'take', '125', 'mg', 'daily']","['-1', 'face amount: 250,000', '-1', '-1', '-1']"
