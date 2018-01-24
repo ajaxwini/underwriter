@@ -1,8 +1,10 @@
-Date,Year,DOB,Gender,Product Type,Face Amount
--1,-1,-1,-1,-1,-1,-1,-1
-"APR 20, 1977",1977,41,FEMALE,Product Type: Permanent,"Face Amount: 50,000",-1,-1
-10/0X/19XX,-1,-1,male,-1,"Face Amount: 250,000",-1,-1
-XX/31/XX,-1,-1,Male,-1,-1,-1,-1
-XX/XX/19XX,-1,-1,Male,-1,-1,-1,-1
--1,-1,-1,Male,-1,-1,-1,-1
-"DEC 20, 1996",1996,22,Female,Product Type: Term,"Face Amount: $500,XXX",-1,-1
+Gender,Year_of_birth,DOB,Product Type,Face Amount,Weight,Height
+ , , , , , ,-1,-1
+FEMALE,1977,41,Product Type: Permanent," 50,000",200KG,-1,-1
+male,1921,97, ," 250,000", ,-1,-1
+Male,1997,21, , ,200 lb,-1,-1
+Male,1945,73, ,"$20,000", ,-1,-1
+Male, ,53,Product Type: Permanent, , ,-1,-1
+Female,1996,22,Product Type: Term,$500, ,-1,-1
+ , ,250,Product Type: Term, 500K,74KG,-1,-1
+Female,1996,22,Product Type: Term,$50m, ,-1,-1
