@@ -31,6 +31,12 @@ weight_num = r'(\d*\.?\d+)\s?(lb|lbs|Lbs|LB|LBS|kg|Kg|KG)'		#r'(.*)\s?([lL][bB][
 
 age = r'(.*\s?[Yy]([eE][aA])?[rR]?[sS]?\s?([oO][lL][dD])?)'
 
+height = r'((.*)?\s?([Ff][eE][eE][tT])((.*)?\s?([iI][nN][Cc][Hh][Ee][Ss]))?)'
+
+smoker = r'\b[sS][Mm][oO][Kk]'
+non_smoker = r'\b[nN][oO][nN][-]?\s?[sS][Mm][oO][Kk]'
+tobacco = r'(.*)?[Tt][oO][bB][aA][cC][cC][oO]\s?(.*)?'
+no = r'[nN][oO]'
 
 def reg(st,i):
 	for line in st: #iterate through every line
@@ -63,7 +69,7 @@ def reg(st,i):
 			x2 = re.search(year_two_digit, x.group(0), re.I | re.U)				
 			if(x2):
 				z = x2.group(0)									
-				print('Last 2 digits of DOB='+z)
+				print('Last 2 digits of Year of birth='+z)
 				data[i][1] = '19'+z
 			elif(x1):
 				data[i][1]=x1.group(0)
@@ -164,28 +170,44 @@ def reg(st,i):
 				data[i][4]=(am.group(0))
 		else:
 			data[i][5]=" "
+			
+		#Height
+		ht=re.search(height, line, re.I | re.U)
+		if(ht): 
+			print (ht.group(0)+"\n")
+			data[i][6]=(ht.group(0))
+		else:
+			data[i][6]=" "
+			
+		#Smoker
+		sm = re.search(smoker, line, re.I | re.U)
+		nsm = re.search(non_smoker, line, re.I | re.U)
+		tob = re.search(tobacco, line, re.I | re.U)
+		if(sm): 
+			print (sm.group(0)+"\n")
+			data[i][7]="Smoker"
+		elif(nsm):
+			print (sm.group(0)+"\n")
+			data[i][7]="Non-Smoker"
+		elif(tob):
+			if(re.search(no, tob.group(0), re.I | re.U)):
+				data[i][7]="Non-Tobacco"
+			else:
+				data[i][7]="Tobacco"
+		else:
+			data[i][7]=" "
 	wtr.writerows(data)
 
-'''
-columns = defaultdict(list) # each value in each column is appended to a list
 
-with open('under.csv') as f:
-    reader = csv.DictReader(f) # read rows into a dictionary format
-    for row in reader: # read a row as {column1: value1, column2: value2,...}
-        for (k,v) in row.items(): # go over each column name and value 
-            columns[k].append(v) # 
-                                
 
-print(columns['Contents'])
-print(columns['Offer'])
-'''
+
 i=0
 w, h = 8, 1;
 data = [[-1 for x in range(w)] for y in range(h)]
 st = []
 out = open('out.csv', 'w')
 wtr= csv.writer( out )
-wtr.writerow(['Gender','Year_of_birth','DOB','Product Type','Face Amount','Weight','Height'])
+wtr.writerow(['Gender','Year_of_birth','DOB','Product Type','Face Amount','Weight','Height','Habit'])
 #strs = ["" for x in range(size)]
 
 with open('under.csv') as f:

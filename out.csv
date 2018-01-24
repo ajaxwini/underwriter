@@ -1,10 +1,10 @@
 Gender,Year_of_birth,DOB,Product Type,Face Amount,Weight,Height
- , , , , , ,-1,-1
-FEMALE,1977,41,Product Type: Permanent," 50,000",200KG,-1,-1
-male,1921,97, ," 250,000", ,-1,-1
-Male,1997,21, , ,200 lb,-1,-1
-Male,1945,73, ,"$20,000", ,-1,-1
-Male, ,53,Product Type: Permanent, , ,-1,-1
-Female,1996,22,Product Type: Term,$500, ,-1,-1
- , ,250,Product Type: Term, 500K,74KG,-1,-1
-Female,1996,22,Product Type: Term,$50m, ,-1,-1
+ , , , , , , , 
+FEMALE,1977,41,Product Type: Permanent," 50,000",200KG, , 
+male,1921,97, ," 250,000", , , 
+Male,1997,21, , ,200 lb,5 Feet 6 Inches, 
+Male,1945,73, ,"$20,000", , ,Non-Tobacco
+Male, ,53,Product Type: Permanent, , , , 
+Female,1996,22,Product Type: Term,$500, , ,Tobacco
+ ,1996,22,Product Type: Term, 500K,74KG, ,Smoker
+Female,1996,22,Product Type: Term,$50m, , ,Non-Tobacco
