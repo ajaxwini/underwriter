@@ -5,7 +5,6 @@ from collections import defaultdict
 import codecs
 import re
 from datetime import datetime
-from search_term import give_med_terms
 
 number = r'\d{2,3}'
 
@@ -29,6 +28,9 @@ faceamount = r'(\b[Ff]ace\s?[Aa]mount:?\s?.*)'
 termamount = r'(.*)?[Tt][eE][rR][mM](.*)?'   			#Regex to read single line from first newline to next newline
 seeking = r'(.*)?[Ss][eE][eE][kK]([iI][nN][gG])?(.*)?'
 term_year = r'(y(ea)?r|Y(ea)?r|Y(ea)?r)'
+k_conv = r'(\s?[kK])'
+m_conv = r'(\s?[mM][mM]?(illion)?(ILLION)?)'
+num_conv = r'\d{1,3}'
 
 weight = r'(.*)?\b[wW][eE][iI][gG][hH][tT]\s?(.*)?' 
 weight_num = r'(\d*\.?\d+)\s?(lb|lbs|Lbs|LB|LBS|kg|Kg|KG|#)'		#r'(.*)\s?([lL][bB][sS]|[oO][zZ]|[gG]|[kK][Gg])' 
@@ -143,7 +145,6 @@ def reg(st,i):
 				currentYear = datetime.now().year
 				#print (currentYear-(int)(x1.group(0)))
 				data[i][2]=((currentYear-(int)(x1.group(0))))
-			
 			else:
 				data[i][2]=' '
 				
@@ -193,7 +194,13 @@ def reg(st,i):
 		seek_reg = re.search(seeking, line, re.I | re.U)
 		#With faceAmount
 		if(w):
-			data[i][4]=(w.group(0))
+			k = re.search(k_conv, w.group(0), re.I | re.U)
+			if(k):
+				nn = re.search(num_conv, w.group(0), re.I | re.U)
+				data[i][4]='Face Amount: $'+((nn.group(0))+',000')
+			else:
+				data[i][4]=(w.group(0))
+			
 #			amd = re.search(amount_with_dollar, w.group(0), re.I | re.U)
 #			amwd = re.search(amount_without_dollar, w.group(0), re.I | re.U)			#Find 2nd regex in the same line of 1st regex 
 #			if(amd):
@@ -205,27 +212,66 @@ def reg(st,i):
 		elif(term_reg):
 			amd = re.search(amount_with_dollar, term_reg.group(0), re.I | re.U)
 			amwd = re.search(amount_without_dollar, term_reg.group(0), re.I | re.U)			#Find 2nd regex in the same line of 1st regex 
-			
+			z = 0
 			if(amd):
-				data[i][4]='Face Amount: '+(amd.group(0))
+				k = re.search(k_conv, amd.group(0), re.I | re.U)
+				m = re.search(m_conv, amd.group(0), re.I | re.U)
+				if(k):
+					nn = re.search(num_conv, amd.group(0), re.I | re.U)
+					data[i][4]='Face Amount: '+((nn.group(0))+',000')
+				elif(m):
+					nn = re.search(num_conv, amd.group(0), re.I | re.U)
+					data[i][4]='Face Amount: '+((nn.group(0))+',000,000')
+				else:
+					data[i][4]='Face Amount: '+amd.group(0)
 			elif(amwd):
 				term_year_reg = re.search(term_year, amwd.group(0), re.I | re.U)
 				if(term_year_reg):
 					data[i][4]='Term Year: '+(amwd.group(0))
 				else:
-					data[i][4]='Face Amount: $'+(amwd.group(0))
+					#data[i][4]='Face Amount: $'+(amwd.group(0))
+					k = re.search(k_conv, amwd.group(0), re.I | re.U)
+					m = re.search(m_conv, amwd.group(0), re.I | re.U)
+					if(k):
+						nn = re.search(num_conv, amwd.group(0), re.I | re.U)
+						data[i][4]='Face Amount: $'+((nn.group(0))+',000')
+					elif(m):
+						nn = re.search(num_conv, amwd.group(0), re.I | re.U)
+						data[i][4]='Face Amount: $'+((nn.group(0))+',000,000')
+					else:
+						data[i][4]='Face Amount: $'+amwd.group(0)
 		#With Seeking
 		elif(seek_reg):
 			amd = re.search(amount_with_dollar, seek_reg.group(0), re.I | re.U)
 			amwd = re.search(amount_without_dollar, seek_reg.group(0), re.I | re.U)			#Find 2nd regex in the same line of 1st regex 
 			if(amd):
-				data[i][4]='Face Amount: '+(amd.group(0))
+				#data[i][4]='Face Amount: '+(amd.group(0))
+				k = re.search(k_conv, amd.group(0), re.I | re.U)
+				m = re.search(m_conv, amd.group(0), re.I | re.U)
+				if(k):
+					nn = re.search(num_conv, amd.group(0), re.I | re.U)
+					data[i][4]='Face Amount: '+((nn.group(0))+',000')
+				elif(m):
+					nn = re.search(num_conv, amd.group(0), re.I | re.U)
+					data[i][4]='Face Amount: '+((nn.group(0))+',000,000')
+				else:
+					data[i][4]='Face Amount: '+amd.group(0)
 			elif(amwd):
 				term_year_reg = re.search(term_year, amwd.group(0), re.I | re.U)
 				if(term_year_reg):
 					data[i][4]='Term Year: '+(amwd.group(0))
 				else:
-					data[i][4]='Face Amount: $'+(amwd.group(0))
+					#data[i][4]='Face Amount: $'+(amwd.group(0))
+					k = re.search(k_conv, amwd.group(0), re.I | re.U)
+					m = re.search(m_conv, amwd.group(0), re.I | re.U)
+					if(k):
+						nn = re.search(num_conv, amwd.group(0), re.I | re.U)
+						data[i][4]='Face Amount: $'+((nn.group(0))+',000')
+					elif(m):
+						nn = re.search(num_conv, amwd.group(0), re.I | re.U)
+						data[i][4]='Face Amount: $'+((nn.group(0))+',000,000')
+					else:
+						data[i][4]='Face Amount: $'+amwd.group(0)
 		else:
 			data[i][4]=" "
 			
@@ -338,7 +384,7 @@ def reg(st,i):
 			
 #-------------------------------------------------------------------------
 		#medical data
-		data[i][11] = give_med_terms(line)
+		#data[i][11] = give_med_terms(line)
 	
 	wtr.writerows(data)
 
